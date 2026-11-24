@@ -200,6 +200,21 @@ p,li{font-size:34px;line-height:1.4}
 .active .vanish{animation:vanishc 3s ease-out infinite;animation-delay:var(--d,0s)}
 @keyframes vanishc{0%{opacity:0;transform:translateY(0)}20%{opacity:.95}100%{opacity:0;transform:translateY(-110px) scale(.5)}}
 
+
+/* cronograma */
+.gantt{position:relative;display:flex;flex-direction:column;gap:22px}
+.g-head,.g-row{display:grid;grid-template-columns:330px 1fr;align-items:center;gap:32px}
+.g-months{display:grid;grid-template-columns:repeat(15,1fr)}
+.g-months i{font-style:normal;text-align:center;font-size:24px;font-weight:700;color:var(--muted)}
+.g-row .lbl{font-size:34px;font-weight:700;line-height:1.2}
+.g-row .lbl small{display:block;font-size:26px;font-weight:500;color:var(--muted)}
+.g-track{position:relative;height:96px;border-radius:22px;background:repeating-linear-gradient(90deg,#E3E7F2 0 calc(100%/15 - 4px),transparent calc(100%/15 - 4px) calc(100%/15))}
+.g-bar{position:absolute;top:0;bottom:0;border-radius:22px;display:flex;align-items:center;padding:0 28px;font-size:30px;font-weight:700;white-space:nowrap;color:var(--ink)}
+.g-bar.ink{background:var(--ink);color:#fff}
+.g-handoff{position:absolute;left:calc(362px + (100% - 362px)/3 - 30px);top:150px;width:60px;height:60px}
+.g-handoff svg{width:60px;height:60px;animation:bob 1.2s ease-in-out infinite alternate}
+.chip{background:#fff;border-radius:999px;padding:16px 30px;font-size:32px;font-weight:600}
+
 /* ---------- chrome ---------- */
 #bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;color:#C9CCEB;font-size:14px;opacity:0;transition:opacity .3s}
 body:hover #bar,#bar:focus-within{opacity:1}
@@ -425,8 +440,97 @@ body:hover #bar,#bar:focus-within{opacity:1}
  <aside>“R$ 10 parece pouco. Repetido todo dia, vira R$ 300 no mês. O problema não é o café. É não perceber quanto ele soma. Se fizer sentido para você, ótimo. Só que seja uma decisão consciente.”</aside>
 </section>
 
+<!-- C1 CRONOGRAMA: O QUE E -->
+<section class="slide dark" data-section="4|Seu cronograma financeiro" style="justify-content:center;gap:56px">
+ <h2 class="a" style="--d:.1s;font-size:96px;line-height:1.05;max-width:1500px">Um cronograma diz o que você quer, quanto custa e quando chega.</h2>
+ <div class="row a" style="--d:.8s;align-items:center;gap:36px;background:#2E2C78;border-radius:32px;padding:40px 48px;max-width:1450px">
+  <svg class="coin updown" style="width:110px;height:110px;flex:none" aria-hidden="true"><use href="#coin"/></svg>
+  <p style="font-size:40px;line-height:1.3"><b style="color:var(--gold)">Aporte</b> é o valor que você separa todo mês para um objetivo.</p>
+ </div>
+ <aside>“Até agora a gente olhou para o mês. Agora vamos olhar um pouco mais para frente. Um cronograma financeiro é um plano simples: o que eu quero, quanto custa e quando quero chegar lá. E aporte é só o nome do valor que você separa todo mês para esse objetivo. Pode ser R$ 20, pode ser R$ 200. É o valor que cabe.”</aside>
+</section>
+
+<!-- C2 PRAZOS -->
+<section class="slide" data-section="4|Seu cronograma financeiro">
+ <h2 class="a" style="--d:.05s">Objetivos com prazo</h2>
+ <div class="col" style="gap:28px">
+  <div class="hb a" style="--d:.2s;grid-template-columns:330px 1fr"><p class="lbl">Curto prazo<small>até 1 ano</small></p><div><div class="bar grow" style="width:30%;background:var(--mintL);color:var(--ink);--d:.4s"></div></div></div>
+  <div class="hb a" style="--d:.5s;grid-template-columns:330px 1fr"><p class="lbl">Médio prazo<small>de 1 a 3 anos</small></p><div><div class="bar grow" style="width:62%;background:var(--lilac);color:#fff;--d:.7s"></div></div></div>
+  <div class="hb a" style="--d:.8s;grid-template-columns:330px 1fr"><p class="lbl">Longo prazo<small>mais de 3 anos</small></p><div><div class="bar ink grow" style="width:100%;--d:1s"></div></div></div>
+ </div>
+ <div class="row" style="gap:28px;margin-left:362px">
+  <p class="muted a f1" style="--d:1.3s;font-size:30px">Reserva para imprevistos, material escolar</p>
+  <p class="muted a f1" style="--d:1.45s;font-size:30px">Trocar a geladeira, fazer um curso</p>
+  <p class="muted a f1" style="--d:1.6s;font-size:30px">Entrada de um imóvel, aposentadoria</p>
+ </div>
+ <p class="a" style="--d:2s">Os exemplos são só ideias. Cada pessoa escolhe os seus objetivos.</p>
+ <aside>“Objetivo de curto prazo é para até um ano, como montar uma reserva para imprevistos ou comprar o material escolar. Médio prazo, de um a três anos, como trocar a geladeira ou fazer um curso. Longo prazo, mais de três anos, como a entrada de um imóvel ou a aposentadoria. São só exemplos. Cada pessoa escolhe os seus, e não precisa ter os três ao mesmo tempo.”</aside>
+</section>
+
+<!-- C3 DIAGNOSTICO -->
+<section class="slide" data-section="4|Seu cronograma financeiro">
+ <h2 class="a" style="--d:.05s">Comece pelo diagnóstico</h2>
+ <div class="row" style="align-items:center;gap:28px;margin-top:20px">
+  <div class="card f1 a" style="--d:.2s;align-items:center;padding:56px 36px"><p class="mid">Quanto entra</p></div>
+  <p class="mid a" style="--d:.5s;color:var(--coralT)">−</p>
+  <div class="card f1 a" style="--d:.7s;align-items:center;padding:56px 36px"><p class="mid">Quanto sai</p></div>
+  <p class="mid a" style="--d:1s">=</p>
+  <div class="card ink f1 pop" style="--d:1.3s;align-items:center;padding:56px 36px"><p class="mid" style="color:var(--mintL);text-align:center">Quanto posso separar</p></div>
+ </div>
+ <p class="lead a" style="--d:1.8s">O cronograma começa do que é possível hoje, não de um valor ideal.</p>
+ <aside>“Antes de escolher quanto separar, a gente precisa saber de onde parte. É a conta que vimos até aqui: o salário líquido, menos o que sai no mês. O resultado é quanto dá para separar. No próximo bloco vamos fazer essa conta juntos com a Ana. O cronograma começa desse número, e não de um valor que alguém disse que é o certo.”</aside>
+</section>
+
+<!-- C4 CRONOGRAMA DA ANA -->
+<section class="slide" data-section="4|Seu cronograma financeiro" style="gap:34px">
+ <h2 class="a" style="--d:.05s">O cronograma da Ana</h2>
+ <p class="muted a" style="--d:.15s;font-size:32px;margin-top:-12px">Se a Ana separar R$ 160 por mês</p>
+ <div class="gantt a" style="--d:.25s">
+  <div class="g-head"><span></span><div class="g-months">
+   <i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i></div></div>
+  <div class="g-row"><p class="lbl">Reserva<small>R$ 500</small></p><div class="g-track"><div class="g-bar grow" style="left:0;width:33.33%;background:var(--mintL);--d:.6s">R$ 100/mês</div></div></div>
+  <div class="g-row"><p class="lbl">Material escolar<small>R$ 300</small></p><div class="g-track"><div class="g-bar grow" style="left:0;width:33.33%;background:var(--gold);--d:1s">R$ 60/mês</div></div></div>
+  <div class="g-row"><p class="lbl">Geladeira<small>R$ 1.600</small></p><div class="g-track"><div class="g-bar ink grow" style="left:33.33%;width:66.67%;--d:1.9s">R$ 160/mês</div></div></div>
+  <div class="g-handoff a" style="--d:1.6s"><svg viewBox="0 0 24 24" fill="none" stroke="#C93A28" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg></div>
+ </div>
+ <p class="lead a" style="--d:2.8s">Quando um objetivo termina, o valor dele passa para o próximo.</p>
+ <p class="note">Exemplo fictício, sem rendimento. 5 × R$ 100 = R$ 500 · 5 × R$ 60 = R$ 300 · 10 × R$ 160 = R$ 1.600</p>
+ <aside>“Vamos imaginar que a Ana consiga separar R$ 160 por mês. Ela tem dois objetivos de curto prazo: uma reserva de R$ 500 e o material escolar de R$ 300. Separando R$ 100 para um e R$ 60 para o outro, em cinco meses os dois estão prontos. No sexto mês, os R$ 160 vão inteiros para a geladeira de R$ 1.600, que fica pronta em dez meses. Não estou contando rendimento nenhum, é só o dinheiro guardado. Quando um objetivo termina, o valor dele passa para o próximo.”
+
+Contas: 5 × R$ 100 = R$ 500; 5 × R$ 60 = R$ 300; R$ 100 + R$ 60 = R$ 160; 10 × R$ 160 = R$ 1.600; total de 15 meses.</aside>
+</section>
+
+<!-- C5 REVISAO -->
+<section class="slide" data-section="4|Seu cronograma financeiro">
+ <h2 class="a" style="--d:.05s">Revise de tempos em tempos</h2>
+ <div class="row" style="gap:64px;align-items:center">
+  <svg class="pop" viewBox="0 0 24 24" style="width:300px;height:300px;flex:none;--d:.2s" fill="none" stroke="#1C1B4D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="hand" style="transform-origin:12px 12px;animation-duration:9s"><path d="M20 12a8 8 0 0 1-14.3 4.9"/><path d="M4 12a8 8 0 0 1 14.3-4.9"/><path d="M18.5 3.5v3.8h-3.8"/><path d="M5.5 20.5v-3.8h3.8"/></g></svg>
+  <div class="col f1" style="gap:30px">
+   <p class="mid a" style="--d:.4s">A cada 3 meses, ou quando algo mudar</p>
+   <div class="row" style="gap:20px;flex-wrap:wrap">
+    <span class="chip a" style="--d:.8s">O salário mudou</span>
+    <span class="chip a" style="--d:1s">Entrou uma conta nova</span>
+    <span class="chip a" style="--d:1.2s">Veio um imprevisto</span>
+   </div>
+  </div>
+ </div>
+ <p class="lead a" style="--d:1.6s">Mudar o plano não é fracassar. É o plano acompanhando a sua vida.</p>
+ <aside>“Um cronograma não é uma promessa que não pode mudar. A cada três meses, ou sempre que algo mudar, vale olhar de novo: o salário mudou, entrou uma conta nova, aconteceu um imprevisto. Ajustar o plano não é fracassar. É o plano acompanhando a sua vida.”</aside>
+</section>
+
+<!-- C6 E SE NAO SOBRA -->
+<section class="slide gold" data-section="4|Seu cronograma financeiro" style="gap:48px">
+ <h2 class="a" style="--d:.05s">E se não sobra nada?</h2>
+ <h1 class="display a" style="--d:.3s;font-size:104px;line-height:1.02;max-width:1550px">O primeiro objetivo pode ser fazer a conta fechar.</h1>
+ <div class="col" style="gap:20px">
+  <div class="list-row a" style="--d:.8s;padding:24px 40px"><span class="n" style="font-size:56px">1</span><p style="font-size:38px">Renegociar uma dívida ou rever um gasto</p></div>
+  <div class="list-row a" style="--d:1.1s;padding:24px 40px"><span class="n" style="font-size:56px">2</span><p style="font-size:38px">Só depois começar o aporte, mesmo que pequeno</p></div>
+ </div>
+ <aside>“E se hoje não sobra nada? Isso acontece com muita gente, e não é culpa de ninguém. Nesse caso, o cronograma começa antes: o primeiro objetivo é fazer a conta fechar. Pode ser renegociar uma dívida ou rever um gasto. Só depois vem o aporte, mesmo que pequeno. Ficar um tempo com aporte zero também faz parte do plano. Daqui a pouco vamos falar mais sobre quando a conta não fecha.”</aside>
+</section>
+
 <!-- 10 COLUNAS -->
-<section class="slide" data-section="4|Organizando o mês">
+<section class="slide" data-section="5|Organizando o mês">
  <h2 class="a" style="--d:.05s">Entrou, saiu, quando vence</h2>
  <div class="row" style="gap:32px">
   <div class="card f1 a" style="--d:.2s;gap:18px">
@@ -450,7 +554,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 </section>
 
 <!-- 11 ANA -->
-<section class="slide" data-section="4|Organizando o mês" style="gap:34px">
+<section class="slide" data-section="5|Organizando o mês" style="gap:34px">
  <h2 class="a" style="--d:.05s">O mês da Ana</h2>
  <div class="row" style="gap:48px;align-items:flex-start">
   <div class="card f1 a" style="--d:.15s;padding:24px 28px">
@@ -463,16 +567,16 @@ body:hover #bar,#bar:focus-within{opacity:1}
     <tr class="a" style="--d:.62s"><td>Remédios</td><td><span class="tag t-e">Essencial</span></td><td class="r">60</td><td>no mês</td></tr>
     <tr class="a" style="--d:.7s"><td>Parcela do celular</td><td><span class="tag t-c">Compromisso</span></td><td class="r">150</td><td>dia 20</td></tr>
     <tr class="a" style="--d:.78s"><td>Parcela de roupas</td><td><span class="tag t-c">Compromisso</span></td><td class="r">80</td><td>dia 20</td></tr>
-    <tr class="a" style="--d:.86s"><td>Delivery e lanches</td><td><span class="tag t-a">Não Essencial</span></td><td class="r">160</td><td>no mês</td></tr>
-    <tr class="a" style="--d:.94s"><td>Duas assinaturas</td><td><span class="tag t-a">Não Essencial</span></td><td class="r">60</td><td>dia 20</td></tr>
-    <tr class="a" style="--d:1.02s"><td>Lazer</td><td><span class="tag t-a">Não Essencial</span></td><td class="r">150</td><td>no mês</td></tr>
+    <tr class="a" style="--d:.86s"><td>Delivery e lanches</td><td><span class="tag t-a">Ajustável</span></td><td class="r">160</td><td>no mês</td></tr>
+    <tr class="a" style="--d:.94s"><td>Duas assinaturas</td><td><span class="tag t-a">Ajustável</span></td><td class="r">60</td><td>dia 20</td></tr>
+    <tr class="a" style="--d:1.02s"><td>Lazer</td><td><span class="tag t-a">Ajustável</span></td><td class="r">150</td><td>no mês</td></tr>
    </table>
   </div>
   <div class="col" style="width:540px;gap:14px">
    <div class="sum card a" style="--d:.2s;flex-direction:row;padding:22px 28px;font-weight:700"><span>Entrada</span><span>R$ 2.500</span></div>
    <div class="sum a" style="--d:1.2s"><span class="muted">Essenciais</span><span class="muted" data-to="1740" data-pre="R$ " data-delay="1200" data-dur="900">R$ 1.740</span></div>
    <div class="sum a" style="--d:1.35s"><span class="muted">Compromissos</span><span class="muted" data-to="230" data-pre="R$ " data-delay="1350" data-dur="900">R$ 230</span></div>
-   <div class="sum a" style="--d:1.5s"><span class="muted">Não Essencial</span><span class="muted" data-to="370" data-pre="R$ " data-delay="1500" data-dur="900">R$ 370</span></div>
+   <div class="sum a" style="--d:1.5s"><span class="muted">Ajustáveis</span><span class="muted" data-to="370" data-pre="R$ " data-delay="1500" data-dur="900">R$ 370</span></div>
    <div class="sum a" style="--d:1.8s;border-top:2px solid var(--line);padding-top:16px;font-weight:700"><span>Total gasto</span><span data-to="2340" data-pre="R$ " data-delay="1800" data-dur="900">R$ 2.340</span></div>
    <div class="card ink pop" style="--d:2.5s;padding:32px">
     <p class="label">Sobra no mês</p>
@@ -490,7 +594,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 </section>
 
 <!-- 12 CALENDARIO -->
-<section class="slide" data-section="4|Organizando o mês">
+<section class="slide" data-section="5|Organizando o mês">
  <h2 class="a" style="--d:.05s">O calendário do mês</h2>
  <div class="tl">
   <div class="tl-line grow" style="--d:.3s"></div>
@@ -510,7 +614,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 </section>
 
 <!-- 13 LIMITE -->
-<section class="slide" data-section="5|Dívidas e parcelas">
+<section class="slide" data-section="6|Dívidas e parcelas">
  <h2 class="a" style="--d:.05s">Limite não é salário</h2>
  <div class="col" style="gap:34px;margin-top:20px">
   <div class="hb a" style="--d:.2s"><p class="lbl">Salário<small>dinheiro seu</small></p><div><div class="bar ink grow" style="width:62.5%;--d:.4s">R$ 2.500</div></div></div>
@@ -522,7 +626,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 </section>
 
 <!-- 14 PARCELA -->
-<section class="slide" data-section="5|Dívidas e parcelas">
+<section class="slide" data-section="6|Dívidas e parcelas">
  <h2 class="a" style="--d:.05s">A parcela e o total</h2>
  <div class="row" style="gap:56px;align-items:stretch">
   <div class="card a" style="--d:.2s;width:600px;flex:none">
@@ -556,7 +660,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 </section>
 
 <!-- 15 JUROS -->
-<section class="slide" data-section="5|Dívidas e parcelas">
+<section class="slide" data-section="6|Dívidas e parcelas">
  <h2 class="a" style="--d:.05s">Juros: o preço de pagar depois</h2>
  <div class="col" style="gap:30px">
   <div class="hb a" style="--d:.2s"><p class="lbl">À vista</p><div><div class="bar ink grow" style="width:83.3%;--d:.4s">R$ 1.000</div></div></div>
@@ -579,7 +683,7 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
 </section>
 
 <!-- 16 NAO FECHA -->
-<section class="slide" data-section="5|Dívidas e parcelas" style="gap:40px">
+<section class="slide" data-section="6|Dívidas e parcelas" style="gap:40px">
  <h2 class="a" style="--d:.05s">Quando a conta não fecha</h2>
  <div class="row" style="gap:32px">
   <div class="col" style="width:360px;gap:28px;flex:none">
@@ -607,7 +711,7 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
 </section>
 
 <!-- 17 IMPREVISTO -->
-<section class="slide" data-section="6|Imprevistos e objetivos">
+<section class="slide" data-section="7|Imprevistos e objetivos">
  <h2 class="a" style="--d:.05s">Imprevisto acontece</h2>
  <div class="stairs">
   <div class="step"><svg class="coin pop" style="width:70px;height:70px;--d:1s" aria-hidden="true"><use href="#coin"/></svg><div class="blk growy" style="height:150px;background:#C9E9DF;--d:.3s"><span>R$ 100</span></div></div>
@@ -620,7 +724,7 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
 </section>
 
 <!-- 18 OBJETIVO -->
-<section class="slide" data-section="6|Imprevistos e objetivos">
+<section class="slide" data-section="7|Imprevistos e objetivos">
  <h2 class="a" style="--d:.05s">Um pequeno objetivo</h2>
  <div class="row" style="gap:32px">
   <div class="card f1 a" style="--d:.2s;gap:20px">
@@ -641,7 +745,7 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
 </section>
 
 <!-- 19 IDEIAS -->
-<section class="slide gold" data-section="7|Encerramento">
+<section class="slide gold" data-section="8|Encerramento">
  <h2 class="a" style="--d:.05s">Três ideias para levar</h2>
  <div class="col" style="gap:24px">
   <div class="list-row a" style="--d:.3s"><span class="n">1</span><p>Conheça o dinheiro que realmente entra.</p></div>
@@ -655,7 +759,7 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
 </section>
 
 <!-- 20 SEMANA -->
-<section class="slide" data-section="7|Encerramento">
+<section class="slide" data-section="8|Encerramento">
  <h2 class="a" style="--d:.05s">Experimente esta semana</h2>
  <div class="col" style="gap:24px">
   <div class="list-row a" style="--d:.2s"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#1F8F74" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke="#E1E5F0"/><path class="draw" pathLength="100" style="--d:.7s" d="M7.5 12.5l3 3 6-7"/></svg><p>Veja quanto realmente cai na sua conta</p></div>
@@ -709,7 +813,8 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
  var slides=[].slice.call(document.querySelectorAll('.slide')),stage=document.getElementById('stage'),i=0,run=0;
  var notes=document.getElementById('notes'),count=document.getElementById('count'),prog=document.getElementById('progress');
  // indicador de parte
- slides.forEach(function(s){var d=s.getAttribute('data-section');if(!d)return;var p=d.split('|');var el=document.createElement('div');el.className='sec';el.innerHTML='<b>'+p[0]+' de 7</b><span>'+p[1]+'</span>';s.appendChild(el);});
+ var TOT=0;slides.forEach(function(s){var d=s.getAttribute('data-section');if(d)TOT=Math.max(TOT,parseInt(d,10));});
+ slides.forEach(function(s){var d=s.getAttribute('data-section');if(!d)return;var p=d.split('|');var el=document.createElement('div');el.className='sec';el.innerHTML='<b>'+p[0]+' de '+TOT+'</b><span>'+p[1]+'</span>';s.appendChild(el);});
  // grade de moedas
  [].forEach.call(document.querySelectorAll('[data-coins]'),function(g){var n=+g.dataset.coins,st=+g.dataset.start,sp=+g.dataset.step,h='';for(var k=0;k<n;k++)h+='<svg class="pop" style="--d:'+(st+k*sp).toFixed(2)+'s" aria-hidden="true"><use href="#coin"/></svg>';g.innerHTML=h;});
  function fmt(n){return Math.round(n).toLocaleString('pt-BR');}
