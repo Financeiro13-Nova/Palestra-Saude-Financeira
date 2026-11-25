@@ -215,6 +215,12 @@ p,li{font-size:34px;line-height:1.4}
 .g-handoff svg{width:60px;height:60px;animation:bob 1.2s ease-in-out infinite alternate}
 .chip{background:#fff;border-radius:999px;padding:16px 30px;font-size:32px;font-weight:600}
 
+/* revelar por clique */
+.stp{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.stp.stp-pop{transform:scale(.6);transition:opacity .4s ease,transform .6s cubic-bezier(.3,1.6,.5,1)}
+.stp.on{opacity:1;transform:none}
+@media print{.stp{opacity:1!important;transform:none!important}}
+
 /* ---------- chrome ---------- */
 #bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;color:#C9CCEB;font-size:14px;opacity:0;transition:opacity .3s}
 body:hover #bar,#bar:focus-within{opacity:1}
@@ -573,12 +579,12 @@ Contas: 5 × R$ 100 = R$ 500; 5 × R$ 60 = R$ 300; R$ 100 + R$ 60 = R$ 160; 10 �
    </table>
   </div>
   <div class="col" style="width:540px;gap:14px">
-   <div class="sum card a" style="--d:.2s;flex-direction:row;padding:22px 28px;font-weight:700"><span>Entrada</span><span>R$ 2.500</span></div>
-   <div class="sum a" style="--d:1.2s"><span class="muted">Essenciais</span><span class="muted" data-to="1740" data-pre="R$ " data-delay="1200" data-dur="900">R$ 1.740</span></div>
-   <div class="sum a" style="--d:1.35s"><span class="muted">Compromissos</span><span class="muted" data-to="230" data-pre="R$ " data-delay="1350" data-dur="900">R$ 230</span></div>
-   <div class="sum a" style="--d:1.5s"><span class="muted">Não essenciais</span><span class="muted" data-to="370" data-pre="R$ " data-delay="1500" data-dur="900">R$ 370</span></div>
-   <div class="sum a" style="--d:1.8s;border-top:2px solid var(--line);padding-top:16px;font-weight:700"><span>Total gasto</span><span data-to="2340" data-pre="R$ " data-delay="1800" data-dur="900">R$ 2.340</span></div>
-   <div class="card ink pop" style="--d:2.5s;padding:32px">
+   <div class="sum card stp" data-step="1" style="flex-direction:row;padding:22px 28px;font-weight:700"><span>Entrada</span><span>R$ 2.500</span></div>
+   <div class="sum stp" data-step="2"><span class="muted">Essenciais</span><span class="muted" data-to="1740" data-pre="R$ " data-delay="0" data-dur="900">R$ 1.740</span></div>
+   <div class="sum stp" data-step="2" style="transition-delay:.15s"><span class="muted">Compromissos</span><span class="muted" data-to="230" data-pre="R$ " data-delay="150" data-dur="900">R$ 230</span></div>
+   <div class="sum stp" data-step="2" style="transition-delay:.3s"><span class="muted">Não essenciais</span><span class="muted" data-to="370" data-pre="R$ " data-delay="300" data-dur="900">R$ 370</span></div>
+   <div class="sum stp" data-step="3" style="border-top:2px solid var(--line);padding-top:16px;font-weight:700"><span>Total gasto</span><span data-to="2340" data-pre="R$ " data-delay="0" data-dur="900">R$ 2.340</span></div>
+   <div class="card ink stp stp-pop" data-step="4" style="padding:32px">
     <p class="label">Sobra no mês</p>
     <p class="mid" style="color:var(--mintL)">R$ 160</p>
    </div>
@@ -824,8 +830,11 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
  // grade de moedas
  [].forEach.call(document.querySelectorAll('[data-coins]'),function(g){var n=+g.dataset.coins,st=+g.dataset.start,sp=+g.dataset.step,h='';for(var k=0;k<n;k++)h+='<svg class="pop" style="--d:'+(st+k*sp).toFixed(2)+'s" aria-hidden="true"><use href="#coin"/></svg>';g.innerHTML=h;});
  function fmt(n){return Math.round(n).toLocaleString('pt-BR');}
- function counters(s,token){
-  [].forEach.call(s.querySelectorAll('[data-to]'),function(el){
+ var step=0;
+ function maxStep(s){var m=0;[].forEach.call(s.querySelectorAll('.stp'),function(e){m=Math.max(m,+e.dataset.step);});return m;}
+ function counters(s,token,only){
+  [].forEach.call(only||s.querySelectorAll('[data-to]'),function(el){
+   if(!only){var c=el.closest('.stp');if(c&&!c.classList.contains('on'))return;}
    var to=+el.dataset.to,pre=el.dataset.pre||'',suf=el.dataset.suf||'',dur=+(el.dataset.dur||1400),delay=+(el.dataset.delay||0);
    if(reduce){el.textContent=pre+fmt(to)+suf;return;}
    el.textContent=pre+'0'+suf;
@@ -833,9 +842,13 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
   });
  }
  function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='scale('+s+')';}
- function show(n){
+ function setStep(s,n){step=n;[].forEach.call(s.querySelectorAll('.stp'),function(e){e.classList.toggle('on',+e.dataset.step<=n);});}
+ function next(){var s=slides[i];if(step<maxStep(s)){setStep(s,step+1);var els=[];[].forEach.call(s.querySelectorAll('.stp[data-step="'+step+'"]'),function(e){[].forEach.call(e.querySelectorAll('[data-to]'),function(x){els.push(x);});});counters(s,run,els);}else show(i+1);}
+ function prev(){var s=slides[i];if(step>0)setStep(s,step-1);else show(i-1,true);}
+ function show(n,back){
   var old=i;i=Math.max(0,Math.min(slides.length-1,n));
   slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+  setStep(slides[i],back?maxStep(slides[i]):0);
   run++;counters(slides[i],run);
   count.textContent=(i+1)+' / '+slides.length;
   prog.style.width=((i+1)/slides.length*100)+'%';
@@ -846,19 +859,19 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
  function full(){if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}else{document.exitFullscreen();}}
  document.addEventListener('keydown',function(e){
   var k=e.key;
-  if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();show(i+1);}
-  else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();show(i-1);}
+  if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();next();}
+  else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev();}
   else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);
   else if(k==='n'||k==='N')notes.classList.toggle('open');
   else if(k==='f'||k==='F')full();
  });
- document.getElementById('prev').onclick=function(){show(i-1);};
- document.getElementById('next').onclick=function(){show(i+1);};
+ document.getElementById('prev').onclick=function(){prev();};
+ document.getElementById('next').onclick=function(){next();};
  document.getElementById('btnNotes').onclick=function(){notes.classList.toggle('open');};
  document.getElementById('btnFull').onclick=full;
- document.getElementById('viewport').addEventListener('click',function(e){if(e.clientX>innerWidth/2)show(i+1);else show(i-1);});
+ document.getElementById('viewport').addEventListener('click',function(e){if(e.clientX>innerWidth/2)next();else prev();});
  var x0=null;addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
- addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)show(d<0?i+1:i-1);x0=null;});
+ addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40){if(d<0)next();else prev();}x0=null;});
  addEventListener('resize',fit);addEventListener('hashchange',function(){var h=fromHash();if(h!==i)show(h);});
  fit();show(fromHash());
 })();
