@@ -221,6 +221,32 @@ p,li{font-size:34px;line-height:1.4}
 .stp.on{opacity:1;transform:none}
 @media print{.stp{opacity:1!important;transform:none!important}}
 
+
+/* qr exercícios */
+.qr-step{display:flex;align-items:center;gap:26px}
+.qr-step span{width:64px;height:64px;flex:none;border-radius:50%;background:var(--gold);color:var(--ink);font-family:var(--disp);font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center}
+.qr-step p{font-size:38px}
+.qr-wrap{position:relative;width:640px;height:640px;flex:none;margin-right:40px}
+.qr-card{position:absolute;inset:40px;background:#fff;border-radius:36px;padding:28px;box-shadow:0 0 0 10px rgba(142,124,255,.25)}
+.qr-card img{width:100%;height:100%;display:block}
+.qr-ring{position:absolute;inset:40px;border-radius:36px;border:6px solid var(--mintL);opacity:0}
+.active .qr-ring{animation:qring 2.6s ease-out infinite 1.2s}
+@keyframes qring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.16)}}
+.qr-c{position:absolute;width:84px;height:84px;border:10px solid var(--gold)}
+.qr-c.tl{left:0;top:0;border-right:none;border-bottom:none;border-radius:30px 0 0 0}
+.qr-c.tr{right:0;top:0;border-left:none;border-bottom:none;border-radius:0 30px 0 0}
+.qr-c.bl{left:0;bottom:0;border-right:none;border-top:none;border-radius:0 0 0 30px}
+.qr-c.br{right:0;bottom:0;border-left:none;border-top:none;border-radius:0 0 30px 0}
+.active .qr-c{animation:qcorner 1.6s ease-in-out infinite alternate}
+.active .qr-c.tl{--x:-10px;--y:-10px}.active .qr-c.tr{--x:10px;--y:-10px}.active .qr-c.bl{--x:-10px;--y:10px}.active .qr-c.br{--x:10px;--y:10px}
+@keyframes qcorner{from{transform:translate(0,0)}to{transform:translate(var(--x),var(--y))}}
+.qr-phone{position:absolute;right:-150px;bottom:-60px;width:150px;height:234px;transform-origin:50% 100%}
+.active .qr-phone{animation:qphone 3s ease-in-out infinite}
+@keyframes qphone{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-18px)}}
+.active .qr-beam{animation:qbeam 1.4s ease-in-out infinite alternate}
+@keyframes qbeam{from{transform:translateY(-12px)}to{transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){.qr-ring,.qr-c,.qr-phone,.qr-beam{animation:none!important}}
+
 /* ---------- chrome ---------- */
 #bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;color:#C9CCEB;font-size:14px;opacity:0;transition:opacity .3s}
 body:hover #bar,#bar:focus-within{opacity:1}
@@ -262,8 +288,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
   <div class="col f1" style="gap:40px">
    <p class="a" style="--d:.1s;color:var(--gold);font-weight:700;font-size:32px">Saúde financeira no dia a dia</p>
    <h1 class="display a" style="--d:.25s;font-size:170px">Seu salário,<br>seu mês</h1>
-   <p class="lead a" style="--d:.45s;color:var(--soft);max-width:900px">Uma conversa simples sobre<br>
-    o dinheiro do dia a dia</p>
+   <p class="lead a" style="--d:.45s;color:var(--soft);max-width:900px">Uma conversa simples sobre o dinheiro do dia a dia</p>
   </div>
   <svg class="wallet pop" style="--d:.3s;width:640px;height:640px;flex:none" viewBox="0 0 600 600" aria-hidden="true">
    <g class="bobber">
@@ -400,7 +425,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 <section class="slide dark" data-section="3|Conhecendo os gastos" style="justify-content:center;gap:48px">
  <h1 class="display a" style="--d:.1s;font-size:140px">Lazer faz parte<br>da vida.</h1>
  <svg viewBox="0 0 900 30" style="width:900px;height:30px" aria-hidden="true"><path class="draw" pathLength="100" style="--d:.7s" d="M5 18C150 4 300 26 450 14S750 6 895 16" fill="none" stroke="#3DDBB3" stroke-width="10" stroke-linecap="round"/></svg>
- <p class="lead a" style="--d:1s;color:var(--soft);max-width:1300px">A ideia é que você aprenda a ter lazer, sem adicionar gastos elevados.</p>
+ <p class="lead a" style="--d:1s;color:var(--soft);max-width:1300px">A ideia é que ele seja uma escolha, e não algo que some sem a gente perceber.</p>
  <aside>“Eu não vou dizer para vocês pararem de sair ou de pedir um lanche. Dinheiro também serve para viver. O objetivo não é gastar menos em tudo, é escolher melhor. A ideia é que o lazer seja uma escolha, e não algo que some sem a gente perceber.”</aside>
 </section>
 
@@ -449,7 +474,7 @@ body:hover #bar,#bar:focus-within{opacity:1}
 
 <!-- C1 CRONOGRAMA: O QUE E -->
 <section class="slide dark" data-section="4|Seu cronograma financeiro" style="justify-content:center;gap:56px">
- <h2 class="a" style="--d:.1s;font-size:96px;line-height:1.05;max-width:1500px">Um cronograma diz o que você quer, quanto custa e o tempo que leva.</h2>
+ <h2 class="a" style="--d:.1s;font-size:96px;line-height:1.05;max-width:1500px">Um cronograma diz o que você quer, quanto custa e quando chega.</h2>
  <div class="row a" style="--d:.8s;align-items:center;gap:36px;background:#2E2C78;border-radius:32px;padding:40px 48px;max-width:1450px">
   <svg class="coin updown" style="width:110px;height:110px;flex:none" aria-hidden="true"><use href="#coin"/></svg>
   <p style="font-size:40px;line-height:1.3"><b style="color:var(--gold)">Aporte</b> é o valor que você separa todo mês para um objetivo.</p>
@@ -521,7 +546,7 @@ Contas: 5 × R$ 100 = R$ 500; 5 × R$ 60 = R$ 300; R$ 100 + R$ 60 = R$ 160; 10 �
    </div>
   </div>
  </div>
- <p class="lead a" style="--d:1.6s">Ajustar o plano não é fracassar, é acompanhando as mudanças da sua vida.</p>
+ <p class="lead a" style="--d:1.6s">Mudar o plano não é fracassar. É o plano acompanhando a sua vida.</p>
  <aside>“Um cronograma não é uma promessa que não pode mudar. A cada três meses, ou sempre que algo mudar, vale olhar de novo: o salário mudou, entrou uma conta nova, aconteceu um imprevisto. Ajustar o plano não é fracassar. É o plano acompanhando a sua vida.”</aside>
 </section>
 
@@ -618,6 +643,26 @@ Contas: 5 × R$ 100 = R$ 500; 5 × R$ 60 = R$ 300; R$ 100 + R$ 60 = R$ 160; 10 �
  <p class="lead a" style="--d:3.8s">No dia 5, separe o que vence depois.</p>
  <p class="note">Exemplo fictício: Ana. Fatura = parcelas (R$ 230) + assinaturas (R$ 60).</p>
  <aside>“O salário da Ana cai no dia 5. A fatura do cartão vence no dia 20. Se ela não separar esse dinheiro no dia 5, ele pode ser gasto antes. Olhar as datas ajuda a evitar atraso, e atraso costuma gerar multa e juros.” A fatura do dia 20 soma R$ 290: R$ 150 + R$ 80 + R$ 60.</aside>
+</section>
+
+<!-- 12b EXERCICIOS -->
+<section class="slide dark" data-section="5|Organizando o mês" style="flex-direction:row;align-items:center;gap:110px">
+ <div class="col f1" style="gap:44px">
+  <h1 class="display a" style="--d:.1s;font-size:128px">Agora é<br>com você</h1>
+  <p class="lead a" style="--d:.35s;color:var(--soft);max-width:860px">Os exercícios da palestra estão neste código. Faça no seu ritmo, com os números da sua vida.</p>
+  <div class="col" style="gap:22px">
+   <div class="qr-step a" style="--d:.7s"><span>1</span><p>Abra a câmera do celular</p></div>
+   <div class="qr-step a" style="--d:.9s"><span>2</span><p>Aponte para o código</p></div>
+   <div class="qr-step a" style="--d:1.1s"><span>3</span><p>Toque no link que aparecer</p></div>
+  </div>
+ </div>
+ <div class="qr-wrap pop" style="--d:.45s">
+  <div class="qr-ring"></div>
+  <div class="qr-card"><img src="data:image/png;base64,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EkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgMQlWfUDt+v9g7/+4/l6jKwztZ9ttp1r6r7Oatt9bXPW+Wz7XUzNedu5tu3nrHPedq6p/Uyts+0dTvFFEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBIfB3HkSzM327X+6qRPF+PVfuZms+2c20zNecpU/c1da5t+9nmrPNxrp8x9TvdZtv7mdrPFF80AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAIDEJVn1A7fr/YO/3uv5euzd3Ae23dfUfqbua2o/22ybz1n3s83Ue566L37G1L1vM/UOzzqfKb5oAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAACJr+M4koX/v92u95EtPF+PkXXs572zzmfK1Ducctb7mprz1HymTJ1rytR8ps511v1MmZrzWU29nynb7ssXTQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAg8XUcR7Lwd92u9+/+6WrP12P1/r7Lff0uU/c19Z6n9nNWU3Oectb7MuefMTVn7/B38UUTAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEh8HceRLPxdt+v9u3/6l+frMbLO1H6mbDuX/fwuU/e1zdTv9Kzz2WbqvmAD/2+854smAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJC4JKvyfzxfj1NO5Xa9j5xraj72wwbb3uGUbec6636mbPt/dcrUubbZ9p6n+KIJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACQuyaofeL4eH/z1vG372WZqPrfrfdvRTumsc972Dqf2M2Xq3reda2o/Z53P1LmmbLuvKVPnOitfNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAxNdxHMnC33W73r/7p4nn6zGy7rZzndVZ72vqXNuc9XcxdV9T87Gf9846nylT73CK+/pdfNEEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJfx3EkC3/X7Xr/7p8mnq9Hsi4N7+e9qfmc9XdhPj9jas7bbPtdnHXO20zd+9R9Te1nii+aAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEDi6ziOZGEat+u9Wfgknq/HyEmm5mw/v8vUfU3Z9g6nbDvX1H62Oet7nrJtPmfliyYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkLgkq37gdr1/8Nfznq/H/KInctb5nPVcU7bNZ+r/jal1puYztc6UbfPZxn29NzWfqXe4zdS5puY8xRdNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACBxSVZd4Pl6LNjFH7frfdV+pkyda+q+7OdnbJvz1PuZsm0+9vOe98Mntv2+tvFFEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBIfB3HkSz8Xbfr/bt/+pfn6zGyzjZT85kyNeepc03tZ5up+UyZmvPUueyHT3g/703NZ5up/3+22XZfvmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAImv4ziShb/rdr1/90//8nw9RtbhvW33tW0/U6bOdVbbfu9T9zV1rqn9TDnrufgZU+9nyll/X1N80QQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEpdk1Q88X48P/pqfdtb7ul3vI6M863ymzjU15yn2897UvW8zda6p9zO1n22m5jNlaj9T9zW1n2180QQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEpdk1Q/crvcP/prf6vl6jGx9ap0pU+956lxT+5laZ9u5zrqfKdvufcrUubaZOtfU7+KszPk9XzQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgMQlWXWB5+uxYBfnd7veVx1y2368w58xNedt72fbfrY5671PmZrPNn4Xv4svmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBA4pKseiK36/1Ep/nj+Xqc8lxTpuaz7f1sO9fUfKbONWXbfqbmPGXbfqbua+pcU+vw3rZ7PytfNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAxCVZFX652/U+coLn6zGyDu+d9b6c672p39fUnLeZms8Uc/43/x/zRRMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASFySVYFRt+t9ZL3n6zGyzlmZ83tnnc9ZfxdT9zVlas7bzjVlaj7b+KIJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACS+juNIFv6u2/X+3T/9y/P1GFmH99zXz8xnm22/L+/wd3Ff/6ape99m2/+H2/iiCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkLsmqC9yu9wW74KdN3fvz9RjZ+tQ6/C5T73DKtnc4tZ9tc+a9qXufMvV+ptbZNp8pvmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAImv4ziShQEA+Lf5ogkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJP4HRo4aKgQglIgAAAAASUVORK5CYII=" alt="QR Code para os exercícios da palestra"></div>
+  <i class="qr-c tl"></i><i class="qr-c tr"></i><i class="qr-c bl"></i><i class="qr-c br"></i>
+  <svg class="qr-phone" viewBox="0 0 64 100" aria-hidden="true"><rect x="3" y="3" width="58" height="94" rx="12" fill="#2E2C78" stroke="#8E7CFF" stroke-width="4"/><rect x="11" y="15" width="42" height="64" rx="5" fill="#1C1B4D"/><circle cx="32" cy="88" r="4" fill="#8E7CFF"/><path d="M20 34v-7h7M44 27h7v7M51 54v7h-7M27 61h-7v-7" fill="none" stroke="#FFC845" stroke-width="3.5" stroke-linecap="round"/><path class="qr-beam" d="M18 44h28" stroke="#3DDBB3" stroke-width="3" stroke-linecap="round"/></svg>
+ </div>
+ <aside>“Tudo o que a gente fez com a Ana, vocês podem fazer com a própria vida. Neste código estão os exercícios da palestra. Abram a câmera do celular, apontem para o código e toquem no link que aparecer. Ninguém precisa mostrar nada para ninguém: é para fazer no seu ritmo, com os seus números.” Deixe alguns segundos na tela para quem quiser escanear agora.</aside>
 </section>
 
 <!-- 13 LIMITE -->
@@ -785,7 +830,7 @@ Se quiser citar a taxa média do Banco Central para crédito pessoal, confirme o
  <svg class="rain coin" style="left:58%;width:44px;height:44px;--d:1.8s" aria-hidden="true"><use href="#coin"/></svg>
  <svg class="rain coin" style="left:74%;width:76px;height:76px;--d:5s" aria-hidden="true"><use href="#coin"/></svg>
  <svg class="rain coin" style="left:90%;width:54px;height:54px;--d:8s" aria-hidden="true"><use href="#coin"/></svg>
- <h2 class="a" style="--d:.2s;font-size:92px;line-height:1.08;max-width:1550px;position:relative">Saúde financeira começa quando você aprende a enxergar o dinheiro que já passa pelas suas mãos.</h2>
+ <h2 class="a" style="--d:.2s;font-size:92px;line-height:1.08;max-width:1550px;position:relative">Saúde financeira começa quando você passa a enxergar o dinheiro que já passa pelas suas mãos.</h2>
  <p class="a" style="--d:.9s;font-family:var(--disp);font-weight:750;font-size:56px;color:var(--gold);position:relative">Obrigado.</p>
  <aside>“Talvez você não consiga mudar sua renda amanhã.” Pausa. “Talvez não consiga cortar todas as despesas.” Pausa. “Mas pode começar a entender para onde o seu dinheiro vai. Obrigado.”</aside>
 </section>
